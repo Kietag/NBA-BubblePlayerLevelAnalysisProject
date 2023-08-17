@@ -1,0 +1,89 @@
+This a codebook for the NBA project.
+This text file will explain what each script does, where the data is sourced from and an
+explanation of each variable from the final 'AdvancedProcessed' data frame.
+
+Scripts
+There are two scripts which accompany this research project. One is the data scraper, which
+scrapes advanced basketball data from specified players' pages once the correct players
+have been indetified from the Basketball Reference directory page found at
+https://www.basketball-reference.com/players/.
+
+The other script is the data processing and analysis script. After loading the raw data,
+it is processed to be used in a linear mixed model, including the removal of NA values and
+filtering of player entries based on a number of criteria. The second half of the script
+includes the data analysis used in the research project, including the fitting and analysis
+of a linear mixed model and the creation of graphics to visualise analysis.
+
+Data Source
+The source of the data is from the Sports Reference site for NBA statistics, Basketball
+Reference (https://www.basketball-reference.com/). The 'advanced' table was scraped from the site in accordance with the Sports Reference Data Use Policy (https://www.sports-reference.com/data_use.html). The data frame before the filtering process contained 7151 regular season and post-season observations from 557 players.
+
+Variables
+The following is an explanation of variables found from the processed 'AdvancedProcessed'
+data frame:
+
+Season
+The season in which a given observation is from. The year given is the year the season started,
+so for the targeted 2019/2020 season in which the NBA bubble took place, observations are
+marked 2019. Numeric (Continuous)
+
+Age
+The age of a given player at the start of the season in which an observation took place. Numeric (Continuous)
+
+Position
+The position which a player played in the given season period. Contains 3 categories of player
+positions: Guards, Small Forward, Center/Power Forward. This is based upon a traditional 
+condensed classification of the 5 positions (Casals and Martinez, 2013) Factor (3 levels).
+
+G
+Number of games played by a player in a given season period. Numeric (Continuous).
+
+MP
+Number of minutes played by a player in a given season period. Numeric (Continuous).
+
+PER
+Player Efficiency Rating (PER) is an all-in-one statistic measuring player performance
+developed by Hollinger (2007). This statistic is formulated by an equation which takes into account mainly offensive actions and some defensive actions to create a number which measures a 
+players' performance. This statistic is standardised so that the league average is 15. Statistic can be negative. Numeric
+
+LeaguePlayoff
+A variable that tracks whether a given observation is from 'League' data or 'Playoff' data. Factor (2 levels)
+
+Name
+A factor which tracks which player the observation belongs to. Includes a players' full name
+in the format: [FirstName LastName]. Factor (148 levels)
+
+Exp
+Player Experience, calculated using the difference of the current season and the first season a player played. 0 indicates a players' rookie season. Numeric (Discrete)
+
+MPperG
+Average minutes played per game in a given season period, i.e. If a player played 150 minutes
+in a season and played 6 games in that season, their MPperG would be 25. Calculated from
+Minutes Played/Games Played. Numeric (Continuous)
+
+COVID
+Indicates if the observation was played during the NBA bubble. A dummy coded binary variable,
+1 = NBA bubble, 0 = regular games. Games are considered to be played in the NBA bubble if they happened in the 2019/2020 and are playoff games. Please note: very few seeding league games
+were played in the NBA bubble, but are not considered as 'COVID' fixtures for the purposes
+of the research project, due to the fact that Basketball Reference does not discriminate these 
+league fixtures from the non-bubble league fixtures. Factor (2 levels)
+
+
+
+Packages:
+Please note, in order to run the two scripts produced for this research project, a variety of packages are required. Citations for these are included in the research project. These are:
+
+'rvest'
+'dplyr'
+'tidyr'
+'here'
+'forcats'
+'lmerTest'
+'ggplot2'
+'lme4'
+'lmtest'
+'car'
+'effects'
+'performance'
+'lattice'
+
