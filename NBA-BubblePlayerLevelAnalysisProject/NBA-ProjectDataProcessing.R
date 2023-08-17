@@ -17,7 +17,6 @@ library(here)
 library(effects)
 library(performance)
 library(lattice)
-library(here)
 
 
 # Load the 'Advanced' .rda file which has been scraped using the datascraper script.
@@ -102,6 +101,9 @@ AdvancedProcessed$LeaguePlayoff <- as.factor(AdvancedProcessed$LeaguePlayoff)
 # Filter out any players who upon filtering have no entries for the 19/20 playoff season
 AdvancedProcessed <- AdvancedProcessed %>% group_by(Name) %>% filter(any(COVID == 1)) %>% ungroup()
 
+# Save the 'AdvancedProcessed' data to the data subfolder
+here::here()
+save(AdvancedProcessed, file = file.path("data","AdvancedProcessed.rda"))
  
 ######## Data Analysis ########
 
@@ -325,8 +327,11 @@ AdvancedProcessed %>% group_by(LeaguePlayoff) %>%  summarize(min = min(PER),
 # Mixed Models for Playoff-only data
 
 # Filter out league data
-
 AdvancedProcessedPlayoff <- AdvancedProcessed %>%  filter(AdvancedProcessed$LeaguePlayoff == "Playoff")
+
+# Save the 'AdvancedProcessedPlayoff' data to the data subfolder
+here::here()
+save(AdvancedProcessedPlayoff, file = file.path("data","AdvancedProcessedPlayoff.rda"))
 
 
 # Fit the full model using playoff-only data including summary, confidence intervals,
